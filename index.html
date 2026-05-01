@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HeartLink 💖</title>
+    <title>💖 Love Oracle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -15,59 +15,35 @@
             height: 100vh;
         }
 
-        .app {
-            width: 340px;
-            height: 600px;
-            background: white;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            background: #ff4d6d;
-            color: white;
-            font-size: 18px;
-        }
-
         .card {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 20px;
+            width: 340px;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .heart {
-            font-size: 60px;
-            margin-bottom: 10px;
+        h2 {
+            margin-bottom: 5px;
         }
 
         input {
             width: 90%;
             padding: 10px;
-            margin: 8px auto;
-            border-radius: 12px;
+            margin: 8px 0;
+            border-radius: 10px;
             border: 1px solid #ddd;
-            display: block;
         }
 
         button {
+            width: 90%;
+            padding: 12px;
             background: #ff4d6d;
             color: white;
             border: none;
-            padding: 12px;
-            width: 90%;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 15px;
-            margin: 10px auto;
         }
 
         button:hover {
@@ -76,64 +52,61 @@
 
         #loading {
             display: none;
-            font-size: 14px;
-            margin-top: 10px;
+            margin-top: 15px;
             color: gray;
         }
 
         #result {
             margin-top: 15px;
             font-weight: bold;
-            font-size: 16px;
         }
 
-        .footer {
-            padding: 10px;
-            text-align: center;
-            font-size: 12px;
-            color: gray;
-            border-top: 1px solid #eee;
-        }
-
-        .matchBox {
+        .box {
             background: #fff0f3;
-            padding: 10px;
-            border-radius: 15px;
-            margin-top: 10px;
+            padding: 15px;
+            border-radius: 12px;
+            animation: pop 0.4s ease;
+        }
+
+        @keyframes pop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
 
 <body>
 
-<div class="app">
-    <div class="header">💖 HeartLink Dating</div>
+<!-- 🎵 Love music -->
+<audio id="loveMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_d7e5c6b6b1.mp3?filename=romantic-piano-ambient-121983.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="card">
-        <div class="heart">💘</div>
+<div class="card">
+    <h2>💖 Love Oracle</h2>
+    <p>Let fate decide your connection ✨</p>
 
-        <input type="text" id="name1" placeholder="Your name">
-        <input type="text" id="name2" placeholder="Their name">
+    <input id="a" placeholder="Your name">
+    <input id="b" placeholder="Crush's name">
 
-        <button onclick="match()">Find Match</button>
+    <button onclick="start()">Reveal Fate 💘</button>
 
-        <div id="loading">Finding emotional compatibility...</div>
-
-        <div id="result"></div>
-    </div>
-
-    <div class="footer">Made with 💕 by HeartLink AI</div>
+    <div id="loading">💫 Consulting the stars...</div>
+    <div id="result"></div>
 </div>
 
 <script>
-function match() {
-    let name1 = document.getElementById("name1").value;
-    let name2 = document.getElementById("name2").value;
 
-    if (!name1 || !name2) {
-        document.getElementById("result").innerHTML = "Please enter both names 💔";
-        return;
-    }
+function start() {
+    let a = document.getElementById("a").value;
+    let b = document.getElementById("b").value;
+
+    if (!a || !b) return;
+
+    // 🎵 play music
+    let music = document.getElementById("loveMusic");
+    music.volume = 0.4;
+    music.play();
 
     document.getElementById("result").innerHTML = "";
     document.getElementById("loading").style.display = "block";
@@ -144,25 +117,27 @@ function match() {
         let percent = Math.floor(Math.random() * 101);
 
         let messages = [
-            "You two are dangerously cute 😳",
-            "Strong emotional chemistry 💞",
-            "Friendzone potential detected 😭",
-            "This might actually work 👀",
-            "Soft love energy detected ✨",
-            "Unexpected match 💘"
+            "💔 The universe is not responding to this connection.",
+            "😬 Emotional alignment: unstable.",
+            "📉 Compatibility levels are below expectation.",
+            "💀 The stars suggest moving on… gently.",
+            "🚫 This match has been rejected by fate.",
+            "😂 Villain_X475 says: interesting choice…"
         ];
 
         let msg = messages[Math.floor(Math.random() * messages.length)];
 
         document.getElementById("result").innerHTML = `
-            <div class="matchBox">
-                ${name1} ❤️ ${name2}<br><br>
+            <div class="box">
+                ${a} ❤️ ${b}<br><br>
                 Compatibility: ${percent}%<br><br>
-                ${msg}
+                ${msg}<br><br>
+                ⚠️ You have been analyzed by Villain_X475 😈
             </div>
         `;
-    }, 2000);
+    }, 2500);
 }
+
 </script>
 
 </body>
